@@ -1,85 +1,284 @@
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const navLinks = document.getElementById("navLinks");
+        // ==================== MOBILE MENU ====================
 
-mobileMenuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-    mobileMenuBtn.innerHTML = navLinks.classList.contains("active")
-        ? '<i class="fas fa-times"></i>'
-        : '<i class="fas fa-bars"></i>';
-});
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navLinks = document.getElementById("navLinks");
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll(".nav-links a").forEach((link) => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    });
-});
+        mobileMenuBtn.addEventListener("click", () => {
 
-// Testimonial carousel
-const track = document.getElementById("testimonialTrack");
-const cards = track.querySelectorAll(".testimonial-card");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const dotsContainer = document.getElementById("testimonialDots");
+            navLinks.classList.toggle("hidden");
 
-let cardsPerView = 3;
-let currentIndex = 0;
+            if (navLinks.classList.contains("hidden")) {
 
-function getCardsPerView() {
-    if (window.innerWidth <= 576) return 1;
-    if (window.innerWidth <= 992) return 2;
-    return 3;
-}
+                mobileMenuBtn.innerHTML =
+                    '<i class="fas fa-bars"></i>';
 
-function buildDots() {
-    dotsContainer.innerHTML = "";
-    const totalSlides = cards.length - cardsPerView + 1;
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement("span");
-        if (i === currentIndex) dot.classList.add("active");
-        dot.addEventListener("click", () => goToSlide(i));
-        dotsContainer.appendChild(dot);
-    }git
-}
+            } else {
 
-function updateCarousel() {
-    const cardWidth = cards[0].getBoundingClientRect().width;
-    const gap = 32; // 2rem
-    const offset = (cardWidth + gap) * currentIndex;
-    track.style.transform = `translateX(-${offset}px)`;
+                mobileMenuBtn.innerHTML =
+                    '<i class="fas fa-times"></i>';
 
-    [...dotsContainer.children].forEach((dot, i) => {
-        dot.classList.toggle("active", i === currentIndex);
-    });
-}
+            }
 
-function goToSlide(index) {
-    const maxIndex = cards.length - cardsPerView;
-    currentIndex = Math.max(0, Math.min(index, maxIndex));
-    updateCarousel();
-}
+        });
 
-nextBtn.addEventListener("click", () => {
-    const maxIndex = cards.length - cardsPerView;
-    currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-    updateCarousel();
-});
 
-prevBtn.addEventListener("click", () => {
-    const maxIndex = cards.length - cardsPerView;
-    currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
-    updateCarousel();
-});
+        // Close mobile menu when clicking a link
 
-function initCarousel() {
-    cardsPerView = getCardsPerView();
-    currentIndex = 0;
-    buildDots();
-    updateCarousel();
-}
+        document.querySelectorAll("#navLinks a").forEach((link) => {
 
-window.addEventListener("resize", initCarousel);
-window.addEventListener("load", initCarousel);
-initCarousel();
+            link.addEventListener("click", () => {
+
+                if (window.innerWidth < 768) {
+
+                    navLinks.classList.add("hidden");
+
+                    mobileMenuBtn.innerHTML =
+                        '<i class="fas fa-bars"></i>';
+
+                }
+
+            });
+
+        });
+
+
+        // Close mobile menu when resizing to desktop
+
+        window.addEventListener("resize", () => {
+
+            if (window.innerWidth >= 768) {
+
+                navLinks.classList.remove("hidden");
+
+                mobileMenuBtn.innerHTML =
+                    '<i class="fas fa-bars"></i>';
+
+            } else {
+
+                navLinks.classList.add("hidden");
+
+            }
+
+        });
+
+
+        // ==================== TESTIMONIAL CAROUSEL ====================
+
+        const track =
+            document.getElementById("testimonialTrack");
+
+        const cards =
+            track.querySelectorAll(".testimonial-card");
+
+        const prevBtn =
+            document.getElementById("prevBtn");
+
+        const nextBtn =
+            document.getElementById("nextBtn");
+
+        const dotsContainer =
+            document.getElementById("testimonialDots");
+
+
+        let cardsPerView = 3;
+        let currentIndex = 0;
+
+
+        // Decide how many cards are visible
+
+        function getCardsPerView() {
+
+            if (window.innerWidth < 768) {
+                return 1;
+            }
+
+            if (window.innerWidth < 1024) {
+                return 2;
+            }
+
+            return 3;
+
+        }
+
+
+        // Create dots
+
+        function buildDots() {
+
+            dotsContainer.innerHTML = "";
+
+            const totalSlides =
+                Math.max(1, cards.length - cardsPerView + 1);
+
+            for (let i = 0; i < totalSlides; i++) {
+
+                const dot =
+                    document.createElement("button");
+
+                dot.type = "button";
+
+                dot.className =
+                    "h-2.5 w-2.5 rounded-full border-0 cursor-pointer";
+
+                if (i === currentIndex) {
+
+                    dot.classList.add(
+                        "bg-[rgb(220,53,69)]"
+                    );
+
+                } else {
+
+                    dot.classList.add(
+                        "bg-[rgb(249,224,227)]"
+                    );
+
+                }
+
+                dot.addEventListener("click", () => {
+
+                    goToSlide(i);
+
+                });
+
+                dotsContainer.appendChild(dot);
+
+            }
+
+        }
+
+
+        // Update carousel position
+
+        function updateCarousel() {
+
+            if (!cards.length) {
+                return;
+            }
+
+            const cardWidth =
+                cards[0].getBoundingClientRect().width;
+
+            const gap = 32;
+
+            const offset =
+                (cardWidth + gap) * currentIndex;
+
+            track.style.transform =
+                `translateX(-${offset}px)`;
+
+
+            [...dotsContainer.children].forEach(
+                (dot, i) => {
+
+                    dot.classList.toggle(
+                        "bg-[rgb(220,53,69)]",
+                        i === currentIndex
+                    );
+
+                    dot.classList.toggle(
+                        "bg-[rgb(249,224,227)]",
+                        i !== currentIndex
+                    );
+
+                }
+            );
+
+        }
+
+
+        // Go to specific slide
+
+        function goToSlide(index) {
+
+            const maxIndex =
+                Math.max(0, cards.length - cardsPerView);
+
+            currentIndex =
+                Math.max(
+                    0,
+                    Math.min(index, maxIndex)
+                );
+
+            updateCarousel();
+
+        }
+
+
+        // Next button
+
+        nextBtn.addEventListener("click", () => {
+
+            const maxIndex =
+                Math.max(0, cards.length - cardsPerView);
+
+            if (currentIndex >= maxIndex) {
+
+                currentIndex = 0;
+
+            } else {
+
+                currentIndex++;
+
+            }
+
+            updateCarousel();
+
+        });
+
+
+        // Previous button
+
+        prevBtn.addEventListener("click", () => {
+
+            const maxIndex =
+                Math.max(0, cards.length - cardsPerView);
+
+            if (currentIndex <= 0) {
+
+                currentIndex = maxIndex;
+
+            } else {
+
+                currentIndex--;
+
+            }
+
+            updateCarousel();
+
+        });
+
+
+        // Initialize carousel
+
+        function initCarousel() {
+
+            cardsPerView =
+                getCardsPerView();
+
+            const maxIndex =
+                Math.max(0, cards.length - cardsPerView);
+
+            if (currentIndex > maxIndex) {
+
+                currentIndex = maxIndex;
+
+            }
+
+            buildDots();
+
+            updateCarousel();
+
+        }
+
+
+        window.addEventListener(
+            "resize",
+            initCarousel
+        );
+
+        window.addEventListener(
+            "load",
+            initCarousel
+        );
+
+        initCarousel();
