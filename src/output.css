@@ -15,6 +15,7 @@
     --color-red-700: oklch(50.5% 0.213 27.518);
     --color-red-800: oklch(44.4% 0.177 26.899);
     --color-red-900: oklch(39.6% 0.141 25.723);
+    --color-amber-50: oklch(98.7% 0.022 95.277);
     --color-yellow-500: oklch(79.5% 0.184 86.047);
     --color-green-500: oklch(72.3% 0.219 149.579);
     --color-gray-500: oklch(55.1% 0.027 264.364);
@@ -337,6 +338,9 @@
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
   }
+  .mb-10 {
+    margin-bottom: calc(var(--spacing) * 10);
+  }
   .mb-12 {
     margin-bottom: calc(var(--spacing) * 12);
   }
@@ -429,6 +433,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .max-w-125 {
+    max-width: calc(var(--spacing) * 125);
   }
   .max-w-300 {
     max-width: calc(var(--spacing) * 300);
@@ -589,6 +596,12 @@
   }
   .bg-\[rgb\(249\,247\,247\)\] {
     background-color: rgb(249,247,247);
+  }
+  .bg-amber-50 {
+    background-color: var(--color-amber-50);
+  }
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
   }
   .bg-red-600 {
     background-color: var(--color-red-600);
@@ -960,6 +973,9 @@
     }
     .sm\:left-\[-20px\] {
       left: -20px;
+    }
+    .sm\:mb-10 {
+      margin-bottom: calc(var(--spacing) * 10);
     }
     .sm\:mb-20 {
       margin-bottom: calc(var(--spacing) * 20);
