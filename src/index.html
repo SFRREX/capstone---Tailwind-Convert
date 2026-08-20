@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
-<body class="m-0 overflow-x-hidden bg-white font-sans leading-[1.6]">
+<body class="m-0 overflow-x-hidden bg-white font-[Arial,sans-serif] leading-[1.6]">
+
     <header class="sticky top-0 z-999 w-full bg-white px-5 py-4 shadow-md">
 
         <nav class="flex items-center justify-between px-5">
@@ -16,35 +17,47 @@
             <a href="#" class="text-2xl font-bold text-red-600 no-underline">
                 FBS.
             </a>
-            <ul class="nav-links m-0 flex list-none items-center gap-5 p-0">
+
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn hidden cursor-pointer border-0 bg-transparent text-2xl" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+
+            <ul class="nav-links m-0 flex list-none items-center gap-5 p-0" id="navLinks">
 
                 <li>
-                    <a href="#hero" class="text-black no-underline">
+                    <a href="#hero"
+                        class="inline-block rounded-lg px-5 py-3 text-black no-underline transition-all duration-200 hover:bg-red-600 hover:text-white">
                         Home
                     </a>
                 </li>
 
                 <li>
-                    <a href="#about" class="text-black no-underline">
+                    <a href="#about"
+                        class="inline-block rounded-lg px-5 py-3 text-black no-underline transition-all duration-200 hover:bg-red-600 hover:text-white">
                         About
                     </a>
                 </li>
 
                 <li>
-                    <a href="#products" class="text-black no-underline">
+                    <a href="#products"
+                        class="inline-block rounded-lg px-5 py-3 text-black no-underline transition-all duration-200 hover:bg-red-600 hover:text-white">
                         Products
                     </a>
                 </li>
 
                 <li>
-                    <a href="#reviews" class="text-black no-underline">
+                    <a href="#reviews"
+                        class="inline-block rounded-lg px-5 py-3 text-black no-underline transition-all duration-200 hover:bg-red-600 hover:text-white">
                         Reviews
                     </a>
                 </li>
 
                 <li>
                     <a href="#contact"
-                        class="inline-block rounded-lg border-0 bg-red-600 px-8 py-4 text-base text-white no-underline">
+                        class="inline-block rounded-lg px-5 py-3 text-black no-underline transition-all duration-200 hover:bg-red-600 hover:text-white">
                         Contact Us
                     </a>
                 </li>
@@ -52,35 +65,37 @@
             </ul>
 
         </nav>
+
     </header>
 
     <main>
 
-        <!-- Hero -->
         <section id="hero" class="flex min-h-[90vh] w-full items-center justify-center bg-white px-8 py-20">
 
             <div class="mx-auto grid w-[80%] grid-cols-2 items-center gap-16">
 
-                <div>
 
-                    <h1 class="mb-4 text-5xl font-bold leading-[1.3] text-gray-900">
+                <div class="hero-text">
 
+                    <h1 class="mb-4 text-5xl leading-[1.3] text-gray-900">
                         Elevate Your
                         <span class="text-red-600">
                             Style
                         </span>
-
                     </h1>
 
-                    <p class="mb-6 text-[1.3rem] font-bold text-red-600">
+
+                    <p class="mb-6 text-[1.3rem] font-bold text-red-600 ">
                         Trendy Clothes & Unique Dresses
                     </p>
 
+
                     <p class="mb-4 text-[1.1rem] text-gray-600">
-                        Discover the latest trends and redefine your style
-                        with our stunning collection. From casual chic to
-                        elegant evening wear, we've got you covered.
+                        Discover the latest trends and redefine your style with
+                        our stunning collection. From casual chic to elegant
+                        evening wear, we've got you covered.
                     </p>
+
 
                     <p class="mb-4 text-[1.1rem] text-gray-600">
                         Explore our handpicked selection that blends
@@ -89,10 +104,10 @@
                     </p>
 
 
-                    <!-- Hero Stats -->
                     <div class="my-8 flex gap-10">
 
-                        <div>
+                        <div class="stat-box">
+
                             <h3 class="text-[1.8rem] font-bold text-red-600">
                                 5+
                             </h3>
@@ -100,9 +115,12 @@
                             <p class="mb-0 text-[0.9rem] text-gray-600">
                                 Years Experience
                             </p>
+
                         </div>
 
-                        <div>
+
+                        <div class="stat-box">
+
                             <h3 class="text-[1.8rem] font-bold text-red-600">
                                 100+
                             </h3>
@@ -110,9 +128,12 @@
                             <p class="mb-0 text-[0.9rem] text-gray-600">
                                 Happy Customers
                             </p>
+
                         </div>
 
-                        <div>
+
+                        <div class="stat-box">
+
                             <h3 class="text-[1.8rem] font-bold text-red-600">
                                 50+
                             </h3>
@@ -120,21 +141,21 @@
                             <p class="mb-0 text-[0.9rem] text-gray-600">
                                 Products
                             </p>
+
                         </div>
 
                     </div>
 
 
-                    <!-- Hero Buttons -->
                     <div class="flex gap-4">
 
                         <a href="#products"
-                            class="inline-block rounded-lg bg-red-600 px-8 py-4 text-base text-white no-underline">
+                            class="inline-block rounded-lg bg-red-600 px-8 py-4 text-base text-white no-underline hover:bg-trasparent">
                             Shop Now
                         </a>
 
                         <a href="#about"
-                            class="inline-block rounded-lg border-2 border-red-600 bg-transparent px-8 py-4 text-base text-red-600 no-underline">
+                            class="inline-block rounded-lg border-2 border-red-600 bg-transparent px-8 py-4 text-base text-red-600 no-underline hover:bg-red-600 hover:text-white">
                             Explore Collection
                         </a>
 
@@ -143,17 +164,20 @@
                 </div>
 
 
-                <!-- Hero Image -->
                 <div class="flex justify-center">
 
-                    <img class="h-100 w-full rounded-[10px] object-cover shadow-md" src="assets/img/about.jpg"
+                    <img class="h-100 w-full rounded-[10px] object-cover shadow-md" src="assets/img/hero.jpg"
                         alt="Boutique Store">
 
                 </div>
 
             </div>
+
         </section>
+
     </main>
+
+    <script src="assets/script/script.js"></script>
 
 </body>
 
