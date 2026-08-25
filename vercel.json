@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/src/index.html" }
+    { "source": "/((?!assets/|.*\\.css$).*)", "destination": "/src/index.html" },
+    { "source": "/(.*\\.css)", "destination": "/src/$1" }
   ]
 }
